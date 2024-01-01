@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/arya", (req, res) => {
-    res.json({ name: "arya", age: 23 })
+    res.json({ name: "arya", age: 25 })
 })
 
 app.post('/create-checkout-session', async (req, res) => {
