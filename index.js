@@ -14,39 +14,35 @@ app.use("/arya", (req, res) => {
     res.json({ name: "arya", age: 25 })
 })
 
-// app.post('/create-checkout-session', async (req, res) => {
+app.post('/create-checkout-session', async (req, res) => {
 
-//     console.log(req.body);
+    console.log(req.body);
 
-//     const lineItems = req.body.map((e) => ({
-//         price_data: {
-//             currency: "inr",
-//             product_data: {
-//                 name: e.brand
-//             },
-//             unit_amount: e.price * 100
-//         },
-//         quantity: e.quantity
-//     }))
+    const lineItems = req.body.map((e) => ({
+        price_data: {
+            currency: "inr",
+            product_data: {
+                name: e.brand
+            },
+            unit_amount: e.price * 100
+        },
+        quantity: e.quantity
+    }))
 
-//     const session = await stripe.checkout.sessions.create({
-//         payment_method_types: ["card"],
-//         line_items: lineItems,
-//         mode: "payment",
-//         success_url: `http://localhost:5173/success`,
-//         cancel_url: `http://localhost:5173/cancel`,
-//     });
+    const session = await stripe.checkout.sessions.create({
+        payment_method_types: ["card"],
+        line_items: lineItems,
+        mode: "payment",
+        success_url: `http://localhost:5173/success`,
+        cancel_url: `http://localhost:5173/cancel`,
+    });
 
-//     res.json({ id: session.id });
+    res.json({ id: session.id });
 
-
-//     // res.send('POST REQUEST');
-
-
-// });
+});
 
 app.get("/", (req, res) => {
-
+    res.send("THIS IS ARYA STRIPE TEST MODE")
 })
 
 app.listen(PORT, () => console.log('Running on port 8080'));
